@@ -1,7 +1,7 @@
 <x-app-layout>
     <h1>Create post</h1>
 
-    <form action="{{ route('index') }}" method="post">
+    <form action="{{ route('store') }}" method="post">
         @csrf
         <label for="title">Title: </label>
         <input type="text" id="title" name="title">
