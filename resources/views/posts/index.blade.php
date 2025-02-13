@@ -9,7 +9,11 @@
                 <div>
                     <a href="/posts/{{ $post->id }}">Show</a>
                     <a href="/posts/{{ $post->id }}/edit">Edit</a>
-                    <a href="/posts/{{ $post->id }}/destroy">Delete</a>
+                    <form action="/posts/{{ $post->id }}/destroy" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button>Delete</button>
+                    </form>
                 </div>
             </li>
         @endforeach
