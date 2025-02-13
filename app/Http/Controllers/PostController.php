@@ -29,9 +29,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|unique:posts|max:50',
+            'content' => 'required|max:250',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg'
+        ]);
         $data = [
             'title' => $request->title,
-            'content' => $request->content
+            'content' => $request->content,
+            'image' => $request->file('image')->store('images', 'public')
         ];
 
         Post::create($data);
@@ -62,6 +68,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|unique:posts|max:50',
+            'content' => 'required|max:250'
+        ]);
         $post = Post::find($id);
 
         $data = [
